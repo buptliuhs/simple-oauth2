@@ -10,9 +10,12 @@ createApplication(({ app, callbackUrl }) => {
       secret: process.env.CLIENT_SECRET,
     },
     auth: {
-      tokenHost: 'https://login.live.com',
-      tokenPath: '/oauth20_token.srf',
-      authorizePath: '/oauth20_authorize.srf',
+      // tokenHost: 'https://login.live.com',
+      // tokenPath: '/oauth20_token.srf',
+      // authorizePath: '/oauth20_authorize.srf',
+      tokenHost: 'https://login.microsoftonline.com',
+      tokenPath: '/common/oauth2/v2.0/token',
+      authorizePath: '/common/oauth2/v2.0/authorize',
     },
     options: {
       authorizationMethod: 'body',
@@ -22,7 +25,7 @@ createApplication(({ app, callbackUrl }) => {
   // Authorization uri definition
   const authorizationUri = client.authorizeURL({
     redirect_uri: callbackUrl,
-    scope: 'User.Read',
+    scope: 'User.Read Files.ReadWrite offline_access',
   });
 
   // Initial page redirecting to Github

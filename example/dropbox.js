@@ -22,6 +22,7 @@ createApplication(({ app, callbackUrl }) => {
 
   // Authorization uri definition
   const authorizationUri = client.authorizeURL({
+    token_access_type: 'offline',
     redirect_uri: callbackUrl,
     state: '3(#0/!~',
   });
